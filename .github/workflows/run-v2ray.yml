@@ -1,19 +1,17 @@
-name: Run V2Ray Server
+name: Run V2Ray
 
-on:
-  workflow_dispatch:  # حتى تكدر تشغله يدويًا
+on: workflow_dispatch
 
 jobs:
-  v2ray:
+  run:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-
       - name: Setup V2Ray
-        uses: wangsijie/setup-v2ray@v1
+        uses: bsisnsvsj/setup-v2ray@main
         with:
-          config-base64: ${{ secrets.CONFIG }}
+          config-base64: |
+            ewogICJpbmJvdW5kcyI6IFsKICAgIHsKICAgICAgInBvcnQiOiAxMDgwLAogICAgICAibGlzdGVuIjogIjEyNy4wLjAuMSIsCiAgICAgICJwcm90b2NvbCI6ICJzb2NrcyIsCiAgICAgICJzZXR0aW5ncyI6IHsKICAgICAgICAiYXV0aCI6ICJub2F1dGgiLAogICAgICAgICJ1ZHAiOiB0cnVlLAogICAgICAgICJpcCI6ICIxMjcuMC4wLjEiCiAgICAgIH0KICAgIH0KICBdLAogICJvdXRib3VuZHMiOiBbCiAgICB7CiAgICAgICJwcm90b2NvbCI6ICJ2bWVzcyIsCiAgICAgICJzZXR0aW5ncyI6IHsKICAgICAgICAidm5leHQiOiBbCiAgICAgICAgewogICAgICAgICAgImFkZHJlc3MiOiAiZ2l0aHViLmNvbSIsCiAgICAgICAgICAicG9ydCI6IDQ0MywKICAgICAgICAgICJ1c2VycyI6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICJpZCI6ICIxNDU3NWUyNS1lNjhmLTQzMzktYWJiZC01ZWFmNjY3MGFmNTgiLAogICAgICAgICAgICAgICJhbHRlcklkIjogMCwKICAgICAgICAgICAgICAic2VjdXJpdHkiOiAiYXV0byIKICAgICAgICAgICAgfQogICAgICAgICAgXQogICAgICAgIH1dCiAgICAgIH0sCiAgICAgICJzdHJlYW1TZXR0aW5ncyI6IHsKICAgICAgICAibmV0d29yayI6ICJ0Y3AiLAogICAgICAgICJzZWN1cml0eSI6ICJ0bHMiCiAgICAgIH0KICAgIH0KICBdCn0=
 
-      - name: Check IP
-        run: |
-          curl ip.sb || echo "No IP"
+      - name: Keep alive
+        run: sleep 21600
