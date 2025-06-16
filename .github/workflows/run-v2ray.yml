@@ -1,0 +1,19 @@
+name: Run V2Ray Server
+
+on:
+  workflow_dispatch:  # حتى تكدر تشغله يدويًا
+
+jobs:
+  v2ray:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup V2Ray
+        uses: wangsijie/setup-v2ray@v1
+        with:
+          config-base64: ${{ secrets.CONFIG }}
+
+      - name: Check IP
+        run: |
+          curl ip.sb || echo "No IP"
